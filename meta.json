@@ -37,19 +37,14 @@
         }
       ]
     },
-    "lint": {
-      "type": "confirm",
-      "message": "Use ESLint to lint your code?"
-    },
     "unit": {
       "type": "confirm",
       "message": "Setup unit tests with Karma + Mocha?"
     }
   },
   "filters": {
-    ".eslintrc.js": "lint",
     "test/unit/**/*": "unit",
     "test/e2e/**/*": "e2e"
   },
-  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run dev"
+  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run watchify"
 }
