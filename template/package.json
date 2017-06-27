@@ -5,11 +5,11 @@
   "author": "{{ author }}",
   "private": true,
   "scripts": {
-    "watchify": "watchify -vd -p [browserify-hmr -p {{ port }}] -e src/index.js -o ../../public/build/{{ name }}.js",
+    "watchify": "watchify -vd -p browserify-hmr -e src/index.js -o ../../public/build/{{ name }}.js",
     {{#unit}}
     "test": "karma start karma.conf.js",
     {{/unit}}
-    "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o ../../public/build/{{ name }}.css ] -e src/main.js | uglifyjs -c warnings=false -m > ../../public/build/{{ name }}.js"
+    "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o ../../public/build/{{ name }}.min.css ] -e src/index.js | uglifyjs -c warnings=false -m > ../../public/build/{{ name }}.min.js"
   },
   "browserify": {
     "transform": [

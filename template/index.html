@@ -3,10 +3,38 @@
   <head>
     <meta charset="utf-8">
     <title>{{ name }}</title>
-    <link rel="stylesheet" href="/build/{{ name }}.css">
+
+    {{#if_eq ENV 'production'}}
+    <!-- only include the css if prod as inlined otherwise -->
+    <link rel="stylesheet" href="/build/{{ name }}.min.css">
+    {{/if_eq}}
+
+    <script>
+      // NODE_ENV
+      window.env = "{{ process.env.NODE_ENV }}";
+      {{#session}}
+      // user sesssion info
+      window.session = {
+        jwt: "{{ session.raw }}",
+        user: {
+          id: {{ session.decoded.principal }},
+          name: "{{ session.decoded.username }}",
+        },
+      };
+      {{/session}}
+    </script>
+
   </head>
   <body>
+    <!-- the main container for the app -->
     <div id="app"></div>
+
+    {{#if_eq process.node.NODE_ENV 'production'}}
+    <!-- include dev build with hot reload -->
+    <script src="/build/{{ name }}.min.js"></script>
+    {{else}}
+    <!-- minified prod build -->
     <script src="/build/{{ name }}.js"></script>
+    {{/if_eq}}
   </body>
 </html>

@@ -37,11 +37,6 @@
         }
       ]
     },
-    "port": {
-      "type": "number",
-      "label": "What port should hot-reload run on? Needs to be uniqe to run in paralell.",
-      "default": 3213
-    },
     "unit": {
       "type": "confirm",
       "message": "Setup unit tests with Karma + Mocha?"
