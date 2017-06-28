@@ -8,11 +8,11 @@ html(lang='en')
     if ENV == 'production'
       //- only include the css if prod as inlined otherwise
       link(rel='stylesheet' href='/build/{{ name }}.min.css')
-        
+
     script.
       window.ENV = '#{ENV}';
       window.API_KEY = '#{CONFIG.apiKey}';
-      window.SESSION = !{JSON.stringify(session)}
+      window.SESSION = !{JSON.stringify(SESSION)}
 
     if ENV == 'production'
       //- only include the css if prod as inlined otherwise

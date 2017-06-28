@@ -42,6 +42,7 @@
       "message": "Setup unit tests with Karma + Mocha?"
     }
   },
+  "skipInterpolation": "src/**/*.vue",
   "filters": {
     "test/unit/**/*": "unit",
     "test/e2e/**/*": "e2e"
