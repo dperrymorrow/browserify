@@ -2,27 +2,24 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')
-    title {{ name }}
-    - if process.env.NODE_ENV  == 'production'
-      // only include the css if prod as inlined otherwise
+    title
+      = "{{ name }}"
+
+    if ENV == 'production'
+      //- only include the css if prod as inlined otherwise
       link(rel='stylesheet' href='/build/{{ name }}.min.css')
-    
-    script.
-      // NODE_ENV
-      window.env = process.env.NODE_ENV
-      - if session
-        // user sesssion info
-        window.session = {
-          jwt: session.raw,
-          user: #{ JSON.stringify(session.decoded, null, 2) },
-        };
-      
+
+    if session
+      script.
+        window.session = !{JSON.stringify(session)}
+
   body
-    // the main container for the app
+    //- the main container for the app
     #app
-    - if process.node.NODE_ENV == 'production'
-      // include dev build with hot reload
+
+    if ENV == 'production'
+      //- include dev build with hot reload
       script(src='/build/{{ name }}.min.js')
-    - else
-      // minified prod build
+    else
+      //- minified prod build
       script(src='/build/{{ name }}.js')
