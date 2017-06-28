@@ -1,7 +1,10 @@
 <template>
   <div id="user">
     <img src="http://vuejs.org/images/logo.png">
-    <h1>User retrived from SDK</h1>
+    <h1>
+      Welcome to Your Portal Vue.js App
+      <small>User retrieved from SDK</small>
+    </h1>
     <pre>{{ user }}</pre>
   </div>
 </template>
@@ -13,12 +16,12 @@ export default {
   name: "user",
   data() {
     return {
-      msg: "Welcome to Your Vue.js App",
       user: null,
     };
   },
 
   created() {
+    // on create, fetch the currently logged user
     SDK.userShow(SESSION.decoded.principal)
       .then(user => {
         this.user = user;
@@ -52,6 +55,4 @@ export default {
     overflow-y: auto
     border-radius: .5em
     font-family: Monaco
-
-
 </style>
