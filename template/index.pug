@@ -23,8 +23,16 @@ html(lang='en')
     #app
 
     if ENV == 'production'
-      //- include dev build with hot reload
+      //- minified prod build
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vuex/2.3.1/vuex.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.7.0/vue-router.min.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue-i18n/7.0.3/vue-i18n.min.js')
       script(src='/build/{{ name }}.min.js')
     else
-      //- minified prod build
+      //- include dev build with hot reload
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vuex/2.3.1/vuex.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.7.0/vue-router.js')
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/vue-i18n/7.0.3/vue-i18n.js')
       script(src='/build/{{ name }}.js')
