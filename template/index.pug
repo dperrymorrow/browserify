@@ -5,30 +5,26 @@ html(lang='en')
     title
       = "{{ name }}"
 
-    if ENV == 'production'
-      //- only include the css if prod as inlined otherwise
-      link(rel='stylesheet' href='/build/{{ name }}.min.css')
-
     script.
       window.ENV = '#{ENV}';
       window.API_KEY = '#{CONFIG.apiKey}';
       window.SESSION = !{JSON.stringify(SESSION)}
 
-    if ENV == 'production'
-      //- only include the css if prod as inlined otherwise
-      link(rel='stylesheet' href='/build/junction.min.css')
+    if SERVE_PACKED_ASSETS
+      //- only include the css if prod as in-lined otherwise
+      link(rel='stylesheet' href='/build/{{ name }}.min.css')
 
   body
     //- the main container for the app
     #app
 
-    if ENV == 'production'
+    if SERVE_PACKED_ASSETS
       //- minified prod build
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vuex/2.3.1/vuex.min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.7.0/vue-router.min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vue-i18n/7.0.3/vue-i18n.min.js')
-      script(src='/build/{{ name }}.min.js')
+      script(src='/build/{{ name }}.min.js?version=' + VERSION)
     else
       //- include dev build with hot reload
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.js')

@@ -7,6 +7,8 @@ function index(request, reply) {
   reply.view("{{ destDirName }}/index", {
     CONFIG,
     ROUTES,
+    VERSION: require("./package.json").version,
+    SERVE_PACKED_ASSETS: request.server.app.ENV == "local" ? false : true,
     ENV: request.server.app.ENV,
     SESSION: request.auth.credentials,
   });

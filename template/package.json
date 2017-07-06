@@ -5,25 +5,26 @@
   "author": "{{ author }}",
   "private": true,
   "scripts": {
-    "dev": "cross-env PANTHEON_ENV=local parallelshell 'npm run serve-dev' 'npm run watchify'",
-    "serve-dev": "cd ../../ && npm run dev",
+    "local": "parallelshell 'npm run serve-local' 'npm run watchify'",
+    "serve-local": "cd ../../ && npm run hapi-server",
     "watchify": "watchify -vd -p browserify-hmr -e src/index.js -o ../../public/build/{{ name }}.js",
-    {{#unit}}
-    "test": "karma start karma.conf.js",
-    {{/unit}}
-    "build": "browserify -p [ vueify/plugins/extract-css -o ../../public/build/{{ name }}.min.css ] -e src/index.js | uglifyjs -c warnings=false -m > ../../public/build/{{ name }}.min.js"
+    "test": "",
+    "build": "browserify -p [ vueify/plugins/extract-css -o ../../public/build/{{ name }}.min.css ] -e src/index.js | uglifyjs -c warnings=false --screw-ie8 --stats -m > ../../public/build/{{ name }}.min.js"
   },
   "browserify": {
     "transform": [
       "babelify",
-      "vueify"
+      "vueify",
+      "browserify-shim"
     ]
   },
-  {{#if_eq build "standalone"}}
-  "browser": {
-    "vue": "vue/dist/vue.common.js"
+  "browserify-shim": {
+    "vue": "global:Vue",
+    "vuex": "global:Vuex",
+    "vue-router": "global:VueRouter",
+    "vue-i18n": "global:VueI18n",
+    "moment-timezone": "global:moment"
   },
-  {{/if_eq}}
   "dependencies": {},
   "devDependencies": {
     "@welocalize/pantheon-api-sdk": "^1.0.24",
@@ -34,31 +35,13 @@
     "babel-runtime": "^6.0.0",
     "babelify": "^7.2.0",
     "browserify": "^13.1.0",
+    "browserify-shim": "^3.8.14",
     "vue": "^2.0.1",
     "browserify-hmr": "^0.3.1",
-    "cross-env": "^5.0.1",
-    {{#lint}}
-    "eslint": "^3.3.0",
-    "eslint-config-standard": "^5.3.5",
-    "eslint-plugin-html": "^1.5.2",
-    "eslint-plugin-promise": "^2.0.1",
-    "eslint-plugin-standard": "^2.0.0",
-    {{/lint}}
-    "http-server": "^0.9.0",
-    {{#unit}}
-    "karma": "^1.2.0",
-    "karma-browserify": "^5.1.0",
-    "karma-jasmine": "^1.0.2",
-    "jasmine-core": "^2.6.4",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "karma-spec-reporter": "0.0.26",
-    "phantomjs-prebuilt": "^2.1.3",
-    {{/unit}}
-    "proxyquireify": "^3.0.1",
+    "parallelshell": "^3.0.1",
     "uglify-js": "^2.5.0",
     "vueify": "^9.0.0",
     "watchify": "^3.4.0",
-    "stylus": "^0.54.5",
-    "parallelshell": "^3.0.1"
+    "stylus": "^0.54.5"
   }
 }
