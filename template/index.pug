@@ -10,7 +10,7 @@ html(lang='en')
       window.API_KEY = '#{CONFIG.apiKey}';
       window.SESSION = !{JSON.stringify(SESSION)}
 
-    if SERVE_PACKED_ASSETS
+    if CONFIG.servePackedAssets
       //- only include the css if prod as in-lined otherwise
       link(rel='stylesheet' href='/build/{{ name }}.min.css')
 
@@ -18,7 +18,7 @@ html(lang='en')
     //- the main container for the app
     #app
 
-    if SERVE_PACKED_ASSETS
+    if CONFIG.servePackedAssets
       //- minified prod build
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js')
       script(src='https://cdnjs.cloudflare.com/ajax/libs/vuex/2.3.1/vuex.min.js')

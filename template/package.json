@@ -3,7 +3,7 @@
   "version": "{{ version }}",
   "description": "{{ description }}",
   "author": "{{ author }}",
-"private": true,
+  "private": true,
   "scripts": {
     "local": "./node_modules/.bin/parallelshell 'npm run serve-local' 'npm run watchify'",
     "serve-local": "cd ../../ && npm run hapi-server",
@@ -16,7 +16,8 @@
   "nyc": {
     "exclude": [
       "node_modules",
-      "test/.setup.js"
+      "test/.setup.js",
+      "test/helpers/bootstrap.js"
     ],
     "extension": [
       ".js",
@@ -64,6 +65,7 @@
     "require-extension-hooks": "^0.2.0",
     "require-extension-hooks-babel": "^0.1.1",
     "require-extension-hooks-vue": "^0.3.1",
+    "sinon": "^2.3.6",
     "stylus": "^0.54.5",
     "uglify-js": "^2.5.0",
     "vue": "^2.3.4",
