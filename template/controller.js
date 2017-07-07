@@ -1,15 +1,14 @@
 "use strict";
 
 function index(request, reply) {
-  const ROUTES = request.server.app.ROUTES;
-  const CONFIG = request.server.app.CONFIG;
+  const app = request.server.app;
 
-  reply.view("{{ destDirName }}/index", {
-    CONFIG,
-    ROUTES,
+  reply.view("tester/index", {
+    CONFIG: app.CONFIG,
+    ROUTES: app.ROUTES,
     VERSION: require("./package.json").version,
-    SERVE_PACKED_ASSETS: request.server.app.ENV == "local" ? false : true,
-    ENV: request.server.app.ENV,
+    SERVE_PACKED_ASSETS: app.ENV == "local" ? false : true,
+    ENV: app.ENV,
     SESSION: request.auth.credentials,
   });
 }

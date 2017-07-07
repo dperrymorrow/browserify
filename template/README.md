@@ -14,6 +14,10 @@ npm run local
 # build for production with minification
 npm run build
 
-```
+# run unit tests for components
+npm run test
 
-For more information see the [docs for vueify](https://github.com/vuejs/vueify).
+```
+For more information on compiler [docs for vueify](https://github.com/vuejs/vueify)
+For more information on Hapi server [docs for hapi](https://hapijs.com/)
+For more information on tests see [docs for avoriaz](https://eddyerburgh.gitbooks.io/avoriaz/content/)
