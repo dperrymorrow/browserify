@@ -26,7 +26,6 @@ test("gets current user from sdk", t => {
 
 test("assigns user retrieved from SDK", t => {
   return promise.then(() => {
-    t.context.wrapper.update();
     t.is(t.context.wrapper.data().user.name, "David");
   });
 });
