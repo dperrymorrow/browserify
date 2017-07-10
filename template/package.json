@@ -7,8 +7,8 @@
   "scripts": {
     "local": "./node_modules/.bin/parallelshell 'npm run serve-local' 'npm run watchify'",
     "serve-local": "cd ../../ && npm run hapi-server",
-    "watchify": "watchify -p browserify-hmr -e src/index.js -o ../../public/build/vendor-portal.js",
-    "build": "browserify -p [ vueify/plugins/extract-css -o ../../public/build/vendor-portal.min.css ] -e src/index.js | uglifyjs -c warnings=false --screw-ie8 --stats -m > ../../public/build/vendor-portal.min.js",
+    "watchify": "watchify -p browserify-hmr -e src/index.js -o ../../public/build/{{ name }}.js",
+    "build": "browserify -p [ vueify/plugins/extract-css -o ../../public/build/{{ name }}.min.css ] -e src/index.js | uglifyjs -c warnings=false --screw-ie8 --stats -m > ../../public/build/{{ name }}.min.js",
     "test": "./node_modules/.bin/nyc ./node_modules/.bin/ava test/*.spec.js",
     "report": "./node_modules/.bin/nyc report --reporter=html",
     "codecov": "./node_modules/.bin/nyc report --reporter=lcov > coverage.lcov && codecov"

@@ -3,7 +3,7 @@
 function index(request, reply) {
   const app = request.server.app;
 
-  reply.view("tester/index", {
+  reply.view("{{ destDirName }}/index", {
     CONFIG: app.CONFIG,
     ROUTES: app.ROUTES,
     VERSION: require("./package.json").version,
