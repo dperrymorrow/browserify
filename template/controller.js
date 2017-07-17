@@ -1,13 +1,7 @@
 "use strict";
 
 function index(request, reply) {
-  const app = request.server.app;
-
-  reply.view("{{ destDirName }}/index", {
-    CONFIG: app.CONFIG,
-    ROUTES: app.ROUTES,
-    VERSION: require("./package.json").version,
-    ENV: app.ENV,
+  reply.view("vendorPortal/index", {
     SESSION: request.auth.credentials,
   });
 }

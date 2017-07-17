@@ -6,8 +6,9 @@ html(lang='en')
       = "{{ name }}"
 
     script.
-      window.ENV = '#{ENV}';
-      window.API_KEY = '#{CONFIG.apiKey}';
+      window.ENV = '#{APP.ENV}';
+      window.API_KEY = '#{APP.CONFIG.apiKey}';
+      window.API_ENV = '#{APP.CONFIG.apiEnv}';
       window.SESSION = !{JSON.stringify(SESSION)}
 
     if CONFIG.servePackedAssets
