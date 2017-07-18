@@ -1,7 +1,7 @@
 "use strict";
 
 function index(request, reply) {
-  reply.view("vendorPortal/index", {
+  reply.view("{{ destDirName }}/index", {
     SESSION: request.auth.credentials,
   });
 }
