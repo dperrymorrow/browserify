@@ -16,8 +16,7 @@
   "nyc": {
     "exclude": [
       "node_modules",
-      "test/.setup.js",
-      "test/helpers/bootstrap.js"
+      "test/**/*.js"
     ],
     "extension": [
       ".js",
