@@ -7,5 +7,5 @@ function index(request, reply) {
 }
 
 module.exports = {
-  {{ destDirName }}: { method: "GET", path: "/{{ name }}", handler: index },
+  index: { method: "GET", path: "/{{ name }}", handler: index },
 };
