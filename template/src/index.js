@@ -7,10 +7,10 @@ import SDK from "@welocalize/pantheon-api-sdk";
 
 // setup the sdk so we can begin making calls
 SDK.init({
-  jwt: SESSION.raw,
+  jwt: SESSION.jwt,
   // store, // if you want vuex, pass your instance here
   apiKey: API_KEY,
-  env: ENV,
+  env: API_ENV,
 });
 
 new Vue({
