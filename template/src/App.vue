@@ -14,3 +14,8 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+// load in any external stylus files you need
+@require "stylus/index.styl"
+</style>

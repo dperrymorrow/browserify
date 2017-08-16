@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style scoped lang="stylus">
+<style lang="stylus" scoped>
 #user
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
