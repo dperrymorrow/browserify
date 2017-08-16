@@ -7,5 +7,17 @@ function index(request, reply) {
 }
 
 module.exports = {
-  index: { method: "GET", path: "/{{ name }}", handler: index },
+  index: {
+    method: "GET",
+    path: "/{{ name }}",
+    handler: index,
+    config: {
+      plugins: {
+        hapiAclAuth: {
+          // the roles you add here will determine what users can view this url
+          roles: ["admin"],
+        },
+      },
+    },
+  },
 };
