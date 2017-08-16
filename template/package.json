@@ -44,7 +44,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@welocalize/pantheon-api-sdk": "^1.7.0",
+    "@welocalize/pantheon-api-sdk": "^1.6.1",
     "ava": "^0.20.0",
     "avoriaz": "^2.4.0",
     "babel-core": "^6.0.0",
