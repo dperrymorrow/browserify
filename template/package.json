@@ -21,12 +21,14 @@
     "extension": [
       ".js",
       ".vue"
-    ]
+    ],
+    "all": true
   },
   "ava": {
     "require": [
       "./test/.setup.js"
-    ]
+    ],
+    "failFast": true
   },
   "browserify": {
     "transform": [
