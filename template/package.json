@@ -57,6 +57,7 @@
     "browserify": "^13.1.0",
     "browserify-hmr": "^0.3.1",
     "browserify-shim": "^3.8.14",
+    "chalk": "^2.1.0",
     "css-loader": "^0.28.4",
     "moment-timezone": "^0.5.13",
     "nyc": "^11.0.2",

@@ -2,35 +2,35 @@
 
 import { mount, shallow } from "avoriaz";
 import test from "ava";
-import Vue from "vue";
-import Bootstrap from "./helpers/Bootstrap";
 import User from "../src/components/User.vue";
+import sinon from "sinon";
+import SDK from "@welocalize/pantheon-api-sdk";
 
 // stub SDK calls that your component will be making...
-// needs to be outside beforeEach as cannot stub same method multiple times
-const { stub, promise } = Bootstrap.sdk.stub("userShow", { name: "David" });
+const fakeUser = { name: "Dave" };
+const userShow = sinon.stub(SDK, "userShow").resolves(fakeUser);
 
 test.beforeEach(t => {
-  t.context.wrapper = mount(User, {
-    globals: {
-      // $t: str => str, // if you have vue-i18n enabled
-      // $store: {}, // if you need to mock Vuex $store
-    },
-  });
+  t.context.opts = {
+    // store, // if  you have a store you can pass here...
+    data: { user: fakeUser },
+    globals: {},
+    propsData: {},
+  };
 });
 
 test("gets current user from sdk", t => {
-  const sdkArgs = stub.getCall(0).args;
-  t.is(sdkArgs[0], SESSION.decoded.principal);
+  const wrapper = mount(User, t.context.opts);
+  t.true(userShow.calledWith(window.SESSION.decoded.principal));
 });
 
 test("assigns user retrieved from SDK", t => {
-  return promise.then(() => {
-    t.is(t.context.wrapper.data().user.name, "David");
-  });
+  const wrapper = mount(User, t.context.opts);
+  t.is(wrapper.data().user.name, fakeUser.name);
 });
 
 test("renders the user into the <pre>", t => {
-  t.context.wrapper.setData({ user: { name: "Fred" } });
-  t.is(JSON.parse(t.context.wrapper.find("pre")[0].text()).name, "Fred");
+  t.context.opts.data = { user: { name: "Fred" } };
+  const wrapper = mount(User, t.context.opts);
+  t.true(wrapper.find("pre")[0].text().includes("Fred"));
 });

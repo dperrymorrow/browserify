@@ -22,13 +22,11 @@ export default {
 
   created() {
     // on create, fetch the currently logged user
-    SDK.userShow(SESSION.decoded.principal)
+    SDK.userShow(window.SESSION.decoded.principal)
       .then(user => {
         this.user = user;
       })
-      .catch(err => {
-        console.error(err);
-      });
+      .catch(console.error);
   },
 };
 </script>
