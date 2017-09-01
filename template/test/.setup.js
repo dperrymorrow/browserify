@@ -17,7 +17,7 @@ Vue.use(Vuex);
 Vue.use(TethysVue);
 
 // to mock the localization methods in deep rendering of components
-Vue.prototype.$t = str => str;
+Vue.prototype.$t = str => str.split(".").slice(-1).pop();
 
 window.ENV = "test";
 window.API_ENV = "test";
